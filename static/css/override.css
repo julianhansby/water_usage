@@ -1,0 +1,6 @@
+/* put all override styles here */
+
+.progress {
+	background-color: #ddd;
+	text-indent: 10px;
+}
