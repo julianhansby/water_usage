@@ -1,6 +1,23 @@
 /* put all override styles here */
 
+body { background-color: #ccc }
+
 .progress {
 	background-color: #ddd;
 	text-indent: 10px;
+}
+
+.navbar { margin-bottom: 0 }
+	.navbar .fas {
+		font-size: 2em;
+		position: relative;
+		top: -3px;
+	}
+
+.fa-tint { color: #428bca }
+
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
 }

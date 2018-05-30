@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="login-page">
     <img src="../assets/img/logo.png">
     <form class="form-signin" @submit="checkLogin">
       <h2 class="form-signin-heading">Please sign in</h2>
@@ -9,14 +9,14 @@
           <li v-for="error in errors">{{ error }}</li>
         </ul>
       </p>      
-      <label for="username" class="sr-only">Email address</label>
+      <label for="username" class="sr-only">Username</label>
       <input 
         v-model="username"
         type="text"
         name="username" 
         id="username" 
         class="form-control" 
-        placeholder="Email address" 
+        placeholder="Username" 
         required 
         autofocus>
       <label for="password" class="sr-only">Password</label>
@@ -71,7 +71,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.container { text-align: center }
+.login-page {
+  text-align: center;
+  padding: 5% 0;
+}
 
 .form-signin {
   max-width: 330px;

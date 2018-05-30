@@ -1,9 +1,9 @@
 <template>
-	<div class="col-sm-3 col-md-2 sidebar">
+	<div class="col-sm-3 col-md-3 sidebar">
 	  <ul class="nav nav-sidebar">
 	    <li class="active">
 	    	<router-link tag="a" to="/dashboard">
-	    		<i class="fas fa-home"></i> Overview <span class="sr-only">(current)</span>
+	    		<i class="fas fa-home"></i> Overview
 	    	</router-link>
 	    </li>
 	    <li>
@@ -54,17 +54,17 @@
 
   @media (min-width: 768px) {
     .sidebar {
-      position: fixed;
-      top: 51px;
+      top: 0;
       bottom: 0;
       left: 0;
       z-index: 1000;
       display: block;
       padding: 20px;
       overflow-x: hidden;
-      overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+      overflow-y: auto;
       background-color: #f5f5f5;
       border-right: 1px solid #eee;
+      min-height: 500px;
     }
   }
 
