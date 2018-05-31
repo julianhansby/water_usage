@@ -13,14 +13,17 @@
 
           <div class="row placeholders">
 
-            <p>form here</p>
-
-            <hr>
-
-            <button v-on:click="updateData()" type="submit" class="btn btn-default">Submit</button>
-
-
-
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="John Doe" disabled>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">City</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Cape Town" disabled>
+              </div>
+              <button type="submit" class="btn btn-default" disabled>Edit</button>
+            </form>
           </div>
         </div>
       </div>
@@ -51,38 +54,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/*
- * Main content
- */
 
-.main { padding: 20px }
-
-  @media (min-width: 768px) {
-    .main {
-      padding-right: 40px;
-      padding-left: 40px;
-    }
-  }
-  .main .page-header {
-    margin-top: 0;
-  }
-
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-}
-  .placeholders h4 {
-    margin-bottom: 0;
-  }
-
-.placeholder {
-  margin-bottom: 20px;
-}
-  .placeholder img {
-    display: inline-block;
-    border-radius: 50%;
-  }
 </style>

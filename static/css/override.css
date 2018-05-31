@@ -7,7 +7,12 @@ body { background-color: #ccc }
 	text-indent: 10px;
 }
 
-.navbar { margin-bottom: 0 }
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
 	.navbar .fas {
 		font-size: 2em;
 		position: relative;
@@ -15,9 +20,55 @@ body { background-color: #ccc }
 	}
 
 .fa-tint { color: #428bca }
+.fa-twitter-square { font-size: 3em }
 
 .clearfix::after {
 	content: "";
 	clear: both;
 	display: table;
 }
+
+/*
+ * Main content
+ */
+
+.main {
+	padding: 20px;
+	position: relative;
+}
+
+  @media (min-width: 768px) {
+    .main {
+      padding-right: 40px;
+      padding-left: 40px;
+    }
+  }
+
+  .main .page-header {
+    margin-top: 0;
+  }
+
+  .main form {
+  	max-width: 300px;
+  	padding: 0 15px;
+  	margin-bottom: 6%;
+  }
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+}
+  .placeholders h4 {
+    margin-bottom: 0;
+  }
+
+.placeholder {
+  margin-bottom: 20px;
+}
+  .placeholder img {
+    display: inline-block;
+    border-radius: 50%;
+  }

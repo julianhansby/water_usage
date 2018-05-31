@@ -45,13 +45,11 @@ export default {
   },
   created (){
     if(JSON.parse(localStorage.getItem('user_set')) == true){
-      alert('user is true and set. go to dashboard')
       this.$router.push('/dashboard');
     }
   },
   methods: {
     checkLogin: function (e) {
-      //alert(this.username +" : "+this.password)
       if(this.username == 'johndoe' && this.password == 'password10'){
         JSON.stringify(localStorage.setItem('user_set',true));
         this.$router.push('/dashboard');

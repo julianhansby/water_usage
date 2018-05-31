@@ -1,6 +1,35 @@
 <template>
   <div class="dashboard-page">
 
+    <!-- Button trigger modal -->
+    <button type="button" class="btn trigger-modal" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button>      
+
+    <!-- Modal -->
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-danger" id="myModalLabel">WATER USAGE ALERT!</h4>
+          </div>
+          <div class="modal-body">
+            <p>We see you are situated in Cape Town, South Africa. Please note that the city has implemented water restrictions which means residents may use a maximum 50 litres of water, per person, per day.</p>
+            <p>This app will help you monitor your daily and monthly water usage.</p>
+          </div>
+          <div class="modal-footer">
+            <button 
+              type="button" 
+              class="btn btn-danger" 
+              data-dismiss="modal"
+              v-on:click="setNoticeStatus()"
+              >OK, Got It</button>
+          </div>
+        </div>
+      </div>
+    </div>    
+
     <Navigation></Navigation>
 
     <div class="container-fluid">
@@ -9,7 +38,11 @@
         <Sidebar></Sidebar>
         
         <div class="col-sm-9 main">
-          <h1 class="page-header">Usage Overview</h1>
+          <h1 class="page-header">Usage Overview Status</h1>
+
+          <router-link to="/add-usage">
+            <button class='float-btn btn btn-primary'>add new usage</button>
+          </router-link>
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
@@ -39,11 +72,11 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>DATE</th>
+                  <th>KITCHEN</th>
+                  <th>BATHROOM</th>
+                  <th>OUTDOORS</th>
+                  <th>STATUS</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,27 +86,6 @@
                   <td>ipsum</td>
                   <td>dolor</td>
                   <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
                 </tr>
               </tbody>
             </table>
@@ -87,7 +99,6 @@
 <script>
 import Navigation from './Navigation'
 import Sidebar from './Sidebar'
-
 export default {
   name: 'DashboardPage',
   components: {
@@ -98,45 +109,36 @@ export default {
     return {
       msg: 'This will be an app to track home water usage'
     }
+  },
+  created (){
+    if(JSON.parse(localStorage.getItem('notification')) == false){
+      setTimeout(() => { $('.trigger-modal').trigger('click') },1300);
+    } 
+  },
+  methods: {
+    setNoticeStatus: function(){
+      JSON.stringify(localStorage.setItem('notification',true));
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/*
- * Main content
- */
-
-.main { padding: 20px }
-
-  @media (min-width: 768px) {
-    .main {
-      padding-right: 40px;
-      padding-left: 40px;
-    }
+  .float-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    text-transform: uppercase;
   }
-  .main .page-header {
-    margin-top: 0;
+  .trigger-modal {
+    width: 1px;
+    height: 1px;
+    color: #fff;
+    background-color: #fff;
+    border: none;
+    margin-top: -12px;
+    display: block;    
   }
-
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
-}
-  .placeholders h4 {
-    margin-bottom: 0;
-  }
-
-.placeholder {
-  margin-bottom: 20px;
-}
-  .placeholder img {
-    display: inline-block;
-    border-radius: 50%;
-  }
+  .dashboard-page .placeholders { text-align: center }
 </style>

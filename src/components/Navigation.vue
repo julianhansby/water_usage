@@ -32,7 +32,8 @@
     methods: {
       signout: function () {
         alert('lets sign out mate!');
-        localStorage.setItem('user_set',false);
+        JSON.stringify(localStorage.setItem('user_set',false));
+        JSON.stringify(localStorage.setItem('notification',false));
         this.$router.push('/login');
       }
     }

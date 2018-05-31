@@ -1,5 +1,6 @@
 <template>
 	<div class="col-sm-3 col-md-3 sidebar">
+		<p>Todays date: {{todaysDate}}</p>
 	  <ul class="nav nav-sidebar">
 	    <li class="active">
 	    	<router-link tag="a" to="/dashboard">
@@ -14,18 +15,25 @@
 	    <li><a href="#"><i class="fas fa-history"></i> Usage History</a></li>
 	    <li><a href="#"><i class="far fa-calendar-plus"></i> Set Usage Goals</a></li>
 	  </ul>
-	  <label><i class="fas fa-tachometer-alt"></i> Current monthly usage (Litres)</label>
+	  <label><i class="fas fa-tachometer-alt"></i> Current monthly usage</label>
 		<div class="progress">
-		<div 
-			class="progress-bar" 
-			role="progressbar" 
-			aria-valuenow="0" 
-			aria-valuemin="0" 
-			aria-valuemax="100" 
-			v-bind:style="{ width: currMonthlyVal + '%' }">
-		  {{currMonthlyVal}}%
+			<div 
+				class="progress-bar progress-bar-success" 
+				role="progressbar" 
+				aria-valuenow="0" 
+				aria-valuemin="0" 
+				aria-valuemax="100" 
+				v-bind:style="{ width: currMonthlyVal + '%' }">
+			  {{currMonthlyVal}}%
+			</div>
 		</div>
-		</div>	  
+		<label><i class="fas fa-list-ul"></i> Usage Statuses</label>
+    <div class="legend">
+      <label class="green-dot"></label><span> inside your daily limit</span>
+    </div>
+    <div class="legend">
+      <label class="red-dot"></label><span> over your daily limit</span>
+    </div>
 	</div>
 </template>
 <script>
@@ -33,14 +41,16 @@
 		name: 'Sidebar',
 		data () {
 			return {
-				currMonthlyVal: 0
+				currMonthlyVal: 0,
+				todaysDate: new Date()
 			}
 		},
 		created (){
+			this.currMonthlyVal = 60
+			/*
 			if(localStorage.getItem('monthly_usage')){
 				this.currMonthlyVal = parseInt(JSON.parse(localStorage.getItem('monthly_usage')),10)
-			}
-			//alert('yo yo yo');
+			}*/
 		}
 	}
 </script>
@@ -64,7 +74,7 @@
       overflow-y: auto;
       background-color: #f5f5f5;
       border-right: 1px solid #eee;
-      min-height: 500px;
+      min-height: 550px;
     }
   }
 
@@ -84,4 +94,18 @@
     color: #fff;
     background-color: #428bca;
   }
+
+.legend {
+}  
+
+.green-dot, .red-dot {
+	border-radius: 100%;
+  width: 10px;
+  height: 10px;
+  position: relative;
+  top: 5px;
+}
+
+.green-dot { background-color: #4cae4c }
+.red-dot { background-color: red !important } 
 </style>
