@@ -21,6 +21,7 @@ body { background-color: #ccc }
 
 .fa-tint { color: #428bca }
 .fa-twitter-square { font-size: 3em }
+.fa-star:hover { color: #f4d742 }
 
 .clearfix::after {
 	content: "";

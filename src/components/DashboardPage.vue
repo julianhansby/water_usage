@@ -76,16 +76,21 @@
                   <th>KITCHEN</th>
                   <th>BATHROOM</th>
                   <th>OUTDOORS</th>
+                  <th>OTHER</th>
                   <th>STATUS</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                <tr v-if="noResultsFound">
+                  <td rowspan="5">No results available yet...</td>
+                </tr>
+                <tr v-if="!noResultsFound" v-for="item in allData">
+                  <td>{{item.date}}L</td>
+                  <td>{{item.kitchen}}L</td>
+                  <td>{{item.bathroom}}L</td>
+                  <td>{{item.outdoors}}L</td>
+                  <td>{{item.other}}L</td>
+                  <td><div class="dot" v-bind:class="{ redBg: item.status }"></div></td>
                 </tr>
               </tbody>
             </table>
@@ -99,6 +104,7 @@
 <script>
 import Navigation from './Navigation'
 import Sidebar from './Sidebar'
+import Chart from 'chart.js';
 export default {
   name: 'DashboardPage',
   components: {
@@ -107,13 +113,20 @@ export default {
   },
   data () {
     return {
-      msg: 'This will be an app to track home water usage'
+      noResultsFound: true,
+      allData: []
     }
   },
   created (){
     if(JSON.parse(localStorage.getItem('notification')) == false){
       setTimeout(() => { $('.trigger-modal').trigger('click') },1300);
-    } 
+    }
+    
+    if(localStorage.getItem('main_data')){
+      console.log(JSON.parse(localStorage.getItem('main_data')))
+      this.noResultsFound = false;
+      this.allData = JSON.parse(localStorage.getItem('main_data'));
+    }
   },
   methods: {
     setNoticeStatus: function(){
@@ -131,6 +144,13 @@ export default {
     right: 30px;
     text-transform: uppercase;
   }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #4cae4c;
+  }
+  .redBg { background-color: red !important }
   .trigger-modal {
     width: 1px;
     height: 1px;

@@ -150,14 +150,14 @@ export default {
         // update main data array in local storage, to be used on other views
         this.mainData.push({
           date: this.selectedDate,
-          kitchen: this.kitchenRange,
-          outdoors: this.outdoorsRange,
-          bathroom: this.bathroomRange,
-          other: this.otherRange
+          kitchen: this.ranges.kitchenRange,
+          outdoors: this.ranges.outdoorsRange,
+          bathroom: this.ranges.bathroomRange,
+          other: this.ranges.otherRange,
+          status: this.isOverboard
         });
-        setTimeout(() => {
-          JSON.stringify(localStorage.setItem('main_data',this.mainData));
-        },800);
+        localStorage.setItem('main_data',JSON.stringify(this.mainData));
+        console.log(JSON.parse(localStorage.getItem('main_data')));
       }
     },
     calculateSum: function (){

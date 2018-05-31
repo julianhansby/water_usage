@@ -4,6 +4,8 @@ import LoginPage from '@/components/LoginPage'
 import DashboardPage from '@/components/DashboardPage'
 import AddNewPage from '@/components/AddNewPage'
 import ProfilePage from '@/components/ProfilePage'
+import UsageHistoryPage from '@/components/UsageHistoryPage'
+import GoalsPage from '@/components/GoalsPage'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/profile',
       name: 'ProfilePage',
       component: ProfilePage
-    }
+    },
+    {
+      path: '/goals',
+      name: 'GoalsPage',
+      component: GoalsPage
+    },
+    {
+      path: '/history',
+      name: 'UsageHistoryPage',
+      component: UsageHistoryPage
+    }    
   ]
 })

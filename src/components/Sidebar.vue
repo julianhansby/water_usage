@@ -1,6 +1,6 @@
 <template>
 	<div class="col-sm-3 col-md-3 sidebar">
-		<p>Todays date: {{todaysDate}}</p>
+		<p class="today-date">Todays date: <strong>{{todaysDate}}</strong></p>
 	  <ul class="nav nav-sidebar">
 	    <li class="active">
 	    	<router-link tag="a" to="/dashboard">
@@ -12,8 +12,16 @@
 					<i class="fas fa-plus-circle"></i> Add New Usage
 				</router-link>
 			</li>
-	    <li><a href="#"><i class="fas fa-history"></i> Usage History</a></li>
-	    <li><a href="#"><i class="far fa-calendar-plus"></i> Set Usage Goals</a></li>
+	    <li>
+	    	<router-link tag="a" to="/history">
+	    		<i class="fas fa-history"></i> Usage History
+	    	</router-link>
+	    </li>
+	    <li>
+	    	<router-link tag="a" to="/goals">
+	    		<i class="far fa-calendar-plus"></i> Set Usage Goals
+	    	</router-link>
+	    </li>
 	  </ul>
 	  <label><i class="fas fa-tachometer-alt"></i> Current monthly usage</label>
 		<div class="progress">
@@ -37,22 +45,19 @@
 	</div>
 </template>
 <script>
-	export default {
-		name: 'Sidebar',
-		data () {
-			return {
-				currMonthlyVal: 0,
-				todaysDate: new Date()
-			}
-		},
-		created (){
-			this.currMonthlyVal = 60
-			/*
-			if(localStorage.getItem('monthly_usage')){
-				this.currMonthlyVal = parseInt(JSON.parse(localStorage.getItem('monthly_usage')),10)
-			}*/
+import moment from 'moment'
+export default {
+	name: 'Sidebar',
+	data () {
+		return {
+			currMonthlyVal: 0,
+			todaysDate: moment().format("Do MMM YYYY")
 		}
+	},
+	created (){
+		this.currMonthlyVal = 60
 	}
+}
 </script>
 <style scope>
 /*
@@ -107,5 +112,7 @@
 }
 
 .green-dot { background-color: #4cae4c }
-.red-dot { background-color: red !important } 
+.red-dot { background-color: red !important }
+
+.today-date { font-size: 0.8em }
 </style>
